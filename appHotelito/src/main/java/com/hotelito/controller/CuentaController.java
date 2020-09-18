@@ -28,7 +28,7 @@ public class CuentaController {
 	@Autowired
 	CuentaRepository cuentaRepository;
 	
-	@GetMapping(path = "/cuentas")
+	@GetMapping(path = "/cuenta")
 	public ResponseEntity<?> getCuentas(){
 		return new ResponseEntity<List<Cuenta>>((List<Cuenta>) cuentaRepository.findAll(), HttpStatus.OK);
 	}
