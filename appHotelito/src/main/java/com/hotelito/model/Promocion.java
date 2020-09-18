@@ -1,0 +1,75 @@
+package com.hotelito.model;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@Entity
+@Table(name = "promocion")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Promocion implements Serializable {
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_promocion")
+    private int idPromocion;
+    @Column(name = "descuento")
+    private double descuento;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fecha_inicio_prom")
+    private Date fechaIinicioProm;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fecha_fin_prom")
+    private Date fechaFinProm;
+
+    public int getIdPromocion() {
+        return idPromocion;
+    }
+
+    public void setIdPromocion(int idPromocion) {
+        this.idPromocion = idPromocion;
+    }
+
+    public double getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(double descuento) {
+        this.descuento = descuento;
+    }
+
+    public Date getFechaIinicioProm() {
+        return fechaIinicioProm;
+    }
+
+    public void setFechaIinicioProm(Date fechaIinicioProm) {
+        this.fechaIinicioProm = fechaIinicioProm;
+    }
+
+    public Date getFechaFinProm() {
+        return fechaFinProm;
+    }
+
+    public void setFechaFinProm(Date fechaFinProm) {
+        this.fechaFinProm = fechaFinProm;
+    }
+
+    @Override
+    public String toString() {
+        return "Promocion{" + "idPromocion=" + idPromocion + ", descuento=" + descuento + ", fechaIinicioProm=" + fechaIinicioProm + ", fechaFinProm=" + fechaFinProm + '}';
+    }
+    
+}
