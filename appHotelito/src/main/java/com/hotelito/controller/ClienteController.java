@@ -131,7 +131,7 @@ public class ClienteController {
 			response.put("mensaje", "usuario no encontrado.");
 			response.put("descripcion",
 					"El usuario se encontró en la base de datos");
-			entity =  new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+			entity =  new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 		}else if(cliente != null) {
 			Map<String, Object> response = new HashMap<>();
 			response.put("codigo", 4);
