@@ -34,7 +34,7 @@ public class Reserva implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(name = "fecha_fin")
     private Date fechaFin;
-    @Column(nullable = true, name = "total")
+    @Column(name = "total")
     private Double total;
     @ManyToOne
     @JoinColumn(name = "id_cliente")
@@ -43,82 +43,82 @@ public class Reserva implements Serializable {
     @JoinColumn(name = "id_habitacion")
     private Habitacion idHabitacion;
     @ManyToOne
-    @JoinColumn(name = "id_promocion")
-    private Promocion idPromocion;
+    @JoinColumn(nullable = true, name = "id_promocion")
+    private PromocionHabitacion idPromocion;
     @ManyToOne
     @JoinColumn(name = "id_estado")
     private EstadoReserva idEstado;
+	public Reserva() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Reserva(int idReserva, Date fechaInicio, Date fechaFin, Double total, Cliente idCliente,
+			Habitacion idHabitacion, PromocionHabitacion idPromocion, EstadoReserva idEstado) {
+		super();
+		this.idReserva = idReserva;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.total = total;
+		this.idCliente = idCliente;
+		this.idHabitacion = idHabitacion;
+		this.idPromocion = idPromocion;
+		this.idEstado = idEstado;
+	}
+	public int getIdReserva() {
+		return idReserva;
+	}
+	public void setIdReserva(int idReserva) {
+		this.idReserva = idReserva;
+	}
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+	public Double getTotal() {
+		return total;
+	}
+	public void setTotal(Double total) {
+		this.total = total;
+	}
+	public Cliente getIdCliente() {
+		return idCliente;
+	}
+	public void setIdCliente(Cliente idCliente) {
+		this.idCliente = idCliente;
+	}
+	public Habitacion getIdHabitacion() {
+		return idHabitacion;
+	}
+	public void setIdHabitacion(Habitacion idHabitacion) {
+		this.idHabitacion = idHabitacion;
+	}
+	public PromocionHabitacion getIdPromocion() {
+		return idPromocion;
+	}
+	public void setIdPromocion(PromocionHabitacion idPromocion) {
+		this.idPromocion = idPromocion;
+	}
+	public EstadoReserva getIdEstado() {
+		return idEstado;
+	}
+	public void setIdEstado(EstadoReserva idEstado) {
+		this.idEstado = idEstado;
+	}
+	@Override
+	public String toString() {
+		return "Reserva [idReserva=" + idReserva + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
+				+ ", total=" + total + ", idCliente=" + idCliente + ", idHabitacion=" + idHabitacion + ", idPromocion="
+				+ idPromocion + ", idEstado=" + idEstado + "]";
+	}
 
-    public Reserva() {
-    }
-
-    public int getIdReserva() {
-        return idReserva;
-    }
-
-    public void setIdReserva(int idReserva) {
-        this.idReserva = idReserva;
-    }
-
-    public Date getFechaInicio() {
-        return fechaInicio;
-    }
-
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
-
-    public Date getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-
-    public Double getTotal() {
-        return total;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
-    public Cliente getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Cliente idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public Habitacion getIdHabitacion() {
-        return idHabitacion;
-    }
-
-    public void setIdHabitacion(Habitacion idHabitacion) {
-        this.idHabitacion = idHabitacion;
-    }
-
-    public Promocion getIdPromocion() {
-        return idPromocion;
-    }
-
-    public void setIdPromocion(Promocion idPromocion) {
-        this.idPromocion = idPromocion;
-    }
-
-    public EstadoReserva getIdEstado() {
-        return idEstado;
-    }
-
-    public void setIdEstado(EstadoReserva idEstado) {
-        this.idEstado = idEstado;
-    }
-
-    @Override
-    public String toString() {
-        return "Reserva{" + "idReserva=" + idReserva + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", total=" + total + ", idCliente=" + idCliente + ", idHabitacion=" + idHabitacion + ", idPromocion=" + idPromocion + ", idEstado=" + idEstado + '}';
-    }
+    
 
 }

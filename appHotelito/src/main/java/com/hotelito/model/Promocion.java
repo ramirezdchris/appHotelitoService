@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -26,50 +27,50 @@ public class Promocion implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_promocion")
     private int idPromocion;
+	@Column(name = "nombre_promocion")
+	private String nombrePromocion;
     @Column(name = "descuento")
     private double descuento;
-    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern="yyyy-MM-dd")
     @Column(name = "fecha_inicio_prom")
     private Date fechaIinicioProm;
-    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern="yyyy-MM-dd")
     @Column(name = "fecha_fin_prom")
     private Date fechaFinProm;
+	public int getIdPromocion() {
+		return idPromocion;
+	}
+	public void setIdPromocion(int idPromocion) {
+		this.idPromocion = idPromocion;
+	}
+	public String getNombrePromocion() {
+		return nombrePromocion;
+	}
+	public void setNombrePromocion(String nombrePromocion) {
+		this.nombrePromocion = nombrePromocion;
+	}
+	public double getDescuento() {
+		return descuento;
+	}
+	public void setDescuento(double descuento) {
+		this.descuento = descuento;
+	}
+	public Date getFechaIinicioProm() {
+		return fechaIinicioProm;
+	}
+	public void setFechaIinicioProm(Date fechaIinicioProm) {
+		this.fechaIinicioProm = fechaIinicioProm;
+	}
+	public Date getFechaFinProm() {
+		return fechaFinProm;
+	}
+	public void setFechaFinProm(Date fechaFinProm) {
+		this.fechaFinProm = fechaFinProm;
+	}
+	@Override
+	public String toString() {
+		return "Promocion [idPromocion=" + idPromocion + ", nombrePromocion=" + nombrePromocion + ", descuento="
+				+ descuento + ", fechaIinicioProm=" + fechaIinicioProm + ", fechaFinProm=" + fechaFinProm + "]";
+	}
 
-    public int getIdPromocion() {
-        return idPromocion;
-    }
-
-    public void setIdPromocion(int idPromocion) {
-        this.idPromocion = idPromocion;
-    }
-
-    public double getDescuento() {
-        return descuento;
-    }
-
-    public void setDescuento(double descuento) {
-        this.descuento = descuento;
-    }
-
-    public Date getFechaIinicioProm() {
-        return fechaIinicioProm;
-    }
-
-    public void setFechaIinicioProm(Date fechaIinicioProm) {
-        this.fechaIinicioProm = fechaIinicioProm;
-    }
-
-    public Date getFechaFinProm() {
-        return fechaFinProm;
-    }
-
-    public void setFechaFinProm(Date fechaFinProm) {
-        this.fechaFinProm = fechaFinProm;
-    }
-
-    @Override
-    public String toString() {
-        return "Promocion{" + "idPromocion=" + idPromocion + ", descuento=" + descuento + ", fechaIinicioProm=" + fechaIinicioProm + ", fechaFinProm=" + fechaFinProm + '}';
-    }
-    
 }

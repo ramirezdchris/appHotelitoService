@@ -19,25 +19,25 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hotelito.model.Cliente;
-import com.hotelito.repository.ClienteRepository;
+import com.hotelito.model.PromocionHabitacion;
+import com.hotelito.repository.PromocionHabitacionRepository;
 
 @RestController
-public class ClienteController {
+public class PromocionHabitacionController {
 	
 	@Autowired
-	ClienteRepository clienteRepository;
+	PromocionHabitacionRepository promocionHabitacionRepository;
 	
-	@GetMapping(path = "/cliente")
-	public ResponseEntity<?> getClientes(){
-		return new ResponseEntity<List<Cliente>>((List<Cliente>) clienteRepository.findAll(), HttpStatus.OK);
+	@GetMapping(path = "/promocionHabitacion")
+	public ResponseEntity<?> getPromocionHabitacions(){
+		return new ResponseEntity<List<PromocionHabitacion>>((List<PromocionHabitacion>) promocionHabitacionRepository.findAll(), HttpStatus.OK);
 	}
 	
-	@GetMapping(path = "/cliente/{id}")
-	public ResponseEntity<?> getClienteById(@PathVariable Integer id){
+	@GetMapping(path = "/promocionHabitacion/{id}")
+	public ResponseEntity<?> getPromocionHabitacionById(@PathVariable Integer id){
 		
-		Cliente cliente = clienteRepository.findById(id).orElse(null);
-		if(cliente == null) {
+		PromocionHabitacion promocionHabitacion = promocionHabitacionRepository.findById(id).orElse(null);
+		if(promocionHabitacion == null) {
 			Map<String, Object> response = new HashMap<>();
 			response.put("codigo", 1001);
 			response.put("mensaje", "administrador no encontrado.");
@@ -46,11 +46,11 @@ public class ClienteController {
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 		}
 		
-		return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+		return new ResponseEntity<PromocionHabitacion>(promocionHabitacion, HttpStatus.OK);
 	}
 	
-	@PostMapping(path = "/cliente")
-	public ResponseEntity<?> saveCliente(@Valid @RequestBody Cliente cliente, BindingResult result){
+	@PostMapping(path = "/promocionHabitacion")
+	public ResponseEntity<?> savePromocionHabitacion(@Valid @RequestBody PromocionHabitacion promocionHabitacion, BindingResult result){
 		if(result.hasErrors()) {
 			Map<String, Object> response = new HashMap<>();
 			List<HashMap<String, Object>> errors = new ArrayList<>();
@@ -67,11 +67,11 @@ public class ClienteController {
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 		}
 		
-		return new ResponseEntity<Cliente>(clienteRepository.save(cliente), HttpStatus.CREATED);
+		return new ResponseEntity<PromocionHabitacion>(promocionHabitacionRepository.save(promocionHabitacion), HttpStatus.CREATED);
 	}
 	
-	@PutMapping(path = "/cliente/{id}")
-	public ResponseEntity<?> updateCliente(@PathVariable Integer id,@Valid @RequestBody Cliente cliente, BindingResult result){
+	@PutMapping(path = "/promocionHabitacion/{id}")
+	public ResponseEntity<?> updatePromocionHabitacion(@PathVariable Integer id,@Valid @RequestBody PromocionHabitacion promocionHabitacion, BindingResult result){
 		
 		if(result.hasErrors()) {
 			Map<String, Object> response = new HashMap<>();
@@ -89,7 +89,7 @@ public class ClienteController {
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 		}
 		
-		if(clienteRepository.findById(id).orElse(null) == null) {
+		if(promocionHabitacionRepository.findById(id).orElse(null) == null) {
 			Map<String, Object> response = new HashMap<>();
 			response.put("codigo", 1001);
 			response.put("mensaje", "administrador no encontrado.");
@@ -98,20 +98,13 @@ public class ClienteController {
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 		}
 		
-		cliente.setIdCliente(id);		
-		return new ResponseEntity<Cliente>(clienteRepository.save(cliente), HttpStatus.OK);
+		promocionHabitacion.setIdPromHab(id);		
+		return new ResponseEntity<PromocionHabitacion>(promocionHabitacionRepository.save(promocionHabitacion), HttpStatus.OK);
 	}
 	
-	@DeleteMapping(path = "cliente/{id}")
+	@DeleteMapping(path = "promocionHabitacion/{id}")
 	public void deleteAdministrador(@PathVariable Integer id) {
-		clienteRepository.deleteById(id);
-	}
-	
-	@GetMapping(path = "/cliente/login/{usuario}/{clave}")
-	public ResponseEntity<?> loginCliente(@PathVariable String usuario, @PathVariable String clave){
-		List<Cliente> loginCliente = clienteRepository.loginCliente(usuario, clave);
-		return new ResponseEntity<List<Cliente>>(loginCliente, HttpStatus.OK);
-		
+		promocionHabitacionRepository.deleteById(id);
 	}
 
 }

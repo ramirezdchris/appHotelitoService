@@ -26,7 +26,7 @@ public class Cliente implements Serializable{
 	private int idCliente;
 	@Column(name = "nombres")
 	private String nombre;
-	@Column(name = "apellido")
+	@Column(name = "apellidos")
 	private String apellido;
 	@Column(name = "correo")
 	private String correo;
@@ -34,13 +34,15 @@ public class Cliente implements Serializable{
 	private String usuario;
 	@Column(name = "clave")
 	private String clave;
+	@Column(name = "estado")
+	private String estado;
 	
 	
 	public Cliente() {
 		super();
 	}
 
-	public Cliente(int idCliente, String nombre, String apellido, String correo, String usuario, String clave) {
+	public Cliente(int idCliente, String nombre, String apellido, String correo, String usuario, String clave, String estado) {
 		super();
 		this.idCliente = idCliente;
 		this.nombre = nombre;
@@ -48,6 +50,7 @@ public class Cliente implements Serializable{
 		this.correo = correo;
 		this.usuario = usuario;
 		this.clave = clave;
+		this.estado = estado;
 	}
 
 	public int getIdCliente() {
@@ -100,11 +103,19 @@ public class Cliente implements Serializable{
 
 	
 
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 	@Override
 	public String toString() {
 		return "Cliente [idCliente=" + idCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", correo="
-				+ correo + ", usuario=" + usuario + ", clave=" + clave + "]";
+				+ correo + ", usuario=" + usuario + ", clave=" + clave + ", estado=" + estado + "]";
 	}
-	
+
 	
 }
