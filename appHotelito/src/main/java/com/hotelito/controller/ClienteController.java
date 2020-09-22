@@ -127,22 +127,21 @@ public class ClienteController {
 		System.out.println(usuarioEmpleado);
 		if(cliente == null && usuarioEmpleado == null) {
 			Map<String, Object> response = new HashMap<>();
-			response.put("codigo", 1001);
+			response.put("codigo", 0);
 			response.put("mensaje", "usuario no encontrado.");
 			response.put("descripcion",
 					"El usuario se encontró en la base de datos");
 			entity =  new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 		}else if(cliente != null) {
 			Map<String, Object> response = new HashMap<>();
-			response.put("rol", 4);
-			response.put("idCliente", cliente.getIdCliente());
-			response.put("descripcion",
-					"El cliente se encontro");
+			response.put("codigo", 4);
+			response.put("mensaje", cliente.getIdCliente());
+			response.put("descripcion", "El cliente se encontro");
 			entity =  new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 		}else {
 			Map<String, Object> response = new HashMap<>();
-			response.put("rol", usuarioEmpleado.getPersonal().getRol().getId_rol());
-			response.put("idCliente", usuarioEmpleado.getId_usuario_empleado());
+			response.put("codigo", usuarioEmpleado.getPersonal().getRol().getId_rol());
+			response.put("mensaje", usuarioEmpleado.getId_usuario_empleado());
 			response.put("descripcion",
 					"El usuarioEmpleado se encontro");
 			entity =  new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
