@@ -12,6 +12,6 @@ import com.hotelito.model.Cliente;
 public interface ClienteRepository extends CrudRepository<Cliente, Integer>{
 	
 	@Query(value = "SELECT C FROM Cliente C WHERE usuario = :usuario AND clave = :clave")
-	public List<Cliente> loginCliente(@Param("usuario") String usuario, @Param("clave") String clave);
+	public Cliente loginCliente(@Param("usuario") String usuario, @Param("clave") String clave);
 
 }

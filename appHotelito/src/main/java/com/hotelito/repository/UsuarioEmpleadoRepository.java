@@ -15,7 +15,7 @@ public interface UsuarioEmpleadoRepository extends CrudRepository<UsuarioEmplead
 	@Query(value = "SELECT UE FROM UsuarioEmpleado UE WHERE usuario = :usuario AND clave = :clave")
 	public List<UsuarioEmpleado> loginEmpleado(@Param("usuario") String usuario, @Param("clave") String clave);
 	
-	@Query(value = "SELECT UE FROM UsuarioEmpleado UE WHERE usuario = :usuario")
-	public UsuarioEmpleado usarioVal(@Param("usuario")String usn);
+	@Query(value = "SELECT UE FROM UsuarioEmpleado UE WHERE usuario = :usuario AND clave = :clave")
+	public UsuarioEmpleado usarioVal(@Param("usuario")String usn, @Param("clave")String clave);
 
 }

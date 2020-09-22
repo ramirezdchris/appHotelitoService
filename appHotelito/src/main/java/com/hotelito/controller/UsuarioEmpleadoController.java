@@ -119,7 +119,7 @@ public class UsuarioEmpleadoController {
 		
 	}
 	
-	@GetMapping(path ="/usuarioLogin/{dato}/{valor}")
+	/*@GetMapping(path ="/usuarioLogin/{dato}/{valor}")
 	public ResponseEntity<?> validarUsuario(@PathVariable String dato,@PathVariable String valor){
 		UsuarioEmpleado usuario = usuarioEmpleadoRepository.usarioVal(dato);
 		System.out.println(" ==== "+dato+" "+valor);
@@ -150,5 +150,5 @@ public class UsuarioEmpleadoController {
 		
 		return new ResponseEntity<RespuestaGenerica>(respuesta, httpStatus);
 		}	
-
+	 */
 }

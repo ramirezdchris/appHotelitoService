@@ -20,13 +20,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hotelito.model.Cliente;
+import com.hotelito.model.UsuarioEmpleado;
 import com.hotelito.repository.ClienteRepository;
+import com.hotelito.repository.UsuarioEmpleadoRepository;
 
 @RestController
 public class ClienteController {
 	
 	@Autowired
 	ClienteRepository clienteRepository;
+	@Autowired
+	UsuarioEmpleadoRepository UsuarioEmpleadoRepository;
 	
 	@GetMapping(path = "/cliente")
 	public ResponseEntity<?> getClientes(){
@@ -107,10 +111,43 @@ public class ClienteController {
 		clienteRepository.deleteById(id);
 	}
 	
-	@GetMapping(path = "/cliente/login/{usuario}/{clave}")
+	/*@GetMapping(path = "/cliente/login/{usuario}/{clave}")
 	public ResponseEntity<?> loginCliente(@PathVariable String usuario, @PathVariable String clave){
 		List<Cliente> loginCliente = clienteRepository.loginCliente(usuario, clave);
 		return new ResponseEntity<List<Cliente>>(loginCliente, HttpStatus.OK);
+		
+	}*/
+	
+	@GetMapping(path = "/login/{usuario}/{clave}")
+	public ResponseEntity<?> loginCliente(@PathVariable String usuario, @PathVariable String clave){
+		Cliente cliente = clienteRepository.loginCliente(usuario, clave);
+		UsuarioEmpleado usuarioEmpleado = UsuarioEmpleadoRepository.usarioVal(usuario, clave);
+		ResponseEntity<?> entity = new ResponseEntity<String>("",HttpStatus.BAD_REQUEST);
+		System.out.println(cliente);
+		System.out.println(usuarioEmpleado);
+		if(cliente == null && usuarioEmpleado == null) {
+			Map<String, Object> response = new HashMap<>();
+			response.put("codigo", 1001);
+			response.put("mensaje", "usuario no encontrado.");
+			response.put("descripcion",
+					"El usuario se encontró en la base de datos");
+			entity =  new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+		}else if(cliente != null) {
+			Map<String, Object> response = new HashMap<>();
+			response.put("rol", 4);
+			response.put("idCliente", cliente.getIdCliente());
+			response.put("descripcion",
+					"El cliente se encontro");
+			entity =  new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+		}else {
+			Map<String, Object> response = new HashMap<>();
+			response.put("rol", usuarioEmpleado.getPersonal().getRol().getId_rol());
+			response.put("idCliente", usuarioEmpleado.getId_usuario_empleado());
+			response.put("descripcion",
+					"El usuarioEmpleado se encontro");
+			entity =  new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+		}
+		return entity;
 		
 	}
 
