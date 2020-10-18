@@ -47,7 +47,7 @@ public class PromocionController {
 		}
 		
 		return new ResponseEntity<Promocion>(promocion, HttpStatus.OK);
-	}
+	}	
 	
 	@PostMapping(path = "/promocion")
 	public ResponseEntity<?> savePromocion(@Valid @RequestBody Promocion promocion, BindingResult result){
