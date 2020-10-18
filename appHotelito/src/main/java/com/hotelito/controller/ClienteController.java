@@ -32,6 +32,15 @@ public class ClienteController {
 	@Autowired
 	UsuarioEmpleadoRepository UsuarioEmpleadoRepository;
 	
+	@GetMapping(path = "/clienteP")
+	public ResponseEntity<?> getClientesPrueba(){
+		Map<String, Object> response = new HashMap<>();
+		response.put("codigo", 1001);
+		response.put("mensaje", "administrador no encontrado.");
+		response.put("descripcion", "Prueba");
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
 	@GetMapping(path = "/cliente")
 	public ResponseEntity<?> getClientes(){
 		return new ResponseEntity<List<Cliente>>((List<Cliente>) clienteRepository.findAll(), HttpStatus.OK);
